@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga Venezolana de Free Fire | LVFF - Torneos Oficiales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        lvff: {
+                            dark: '#090d16',
+                            card: '#111827',
+                            gold: '#fbbf24',
+                            goldHover: '#d97706',
+                            neon: '#10b981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gold-glow { box-shadow: 0 0 25px rgba(251, 191, 36, 0.2); }
+        .neon-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+        .gold-border-glow { border-color: rgba(251, 191, 36, 0.5); box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+    </style>
+</head>
+<body class="bg-lvff-dark text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+
+    <!-- TOP HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 bg-lvff-card/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-br from-amber-400 to-amber-600 text-black p-2.5 rounded-xl font-black text-xl flex items-center justify-center w-11 h-11 shadow-lg gold-glow">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-lg sm:text-xl tracking-wider text-white leading-tight">LIGA VENEZOLANA <span class="text-amber-400">DE FREE FIRE</span></h1>
+                    <p class="text-[10px] text-emerald-400 font-semibold tracking-widest uppercase flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Torneos Competitivos LVFF
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-right">
+                <span class="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Tasa del día</span>
+                <span id="rateBadge" class="text-xs font-bold text-amber-400 bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg">900.00 Bs / $</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+
+        <!-- HERO BANNER PROMO -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-amber-950/40 to-slate-900 border border-amber-500/30 p-6 text-white shadow-2xl gold-glow">
+            <div class="absolute -right-6 -bottom-10 opacity-10 text-9xl font-black select-none pointer-events-none text-amber-400">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="relative z-10 max-w-xl space-y-2">
+                <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Inscripciones Abiertas
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-tight text-white">
+                    ¡Demuestra tu nivel en la <span class="text-amber-400">LVFF</span>!
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                    Inscríbete en los próximos torneos oficiales. Selecciona tu modalidad, realiza tu pago de inscripción y envía el comprobante directo por WhatsApp para recibir los accesos a la sala.
+                </p>
+            </div>
+        </div>
+
+        <!-- STEP 1: MODALIDAD DEL TORNEO -->
+        <section id="step1" class="bg-lvff-card rounded-2xl p-5 border border-slate-800 shadow-md">
+            <h3 class="font-bold text-base flex items-center gap-2 text-white mb-4">
+                <span class="w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black flex items-center justify-center">1</span>
+                Selecciona la Modalidad del Torneo
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <!-- Solitario -->
+                <div onclick="selectTournament(this, 'Solitario (Solo)', 1.50, '1 Jugador - Tabla de Posiciones')" class="tournament-card cursor-pointer bg-slate-900/80 hover:bg-slate-800 border-2 border-slate-700/80 rounded-xl p-4 transition-all duration-200 flex flex-col items-center text-center relative group">
+                    <span class="absolute -top-2 bg-emerald-500 text-black font-extrabold text-[9px] px-2.5 py-0.5 rounded-full uppercase">Abierto</span>
+                    <i class="fa-solid fa-user-ninja text-3xl text-amber-400 my-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-extrabold text-white text-base">Torneo Solitario</span>
+                    <span class="text-xs text-slate-400 mb-2">1 vs 100 / Todos contra todos</span>
+                    <div class="mt-auto pt-2 border-t border-slate-800 w-full flex flex-col items-center">
+                        <span class="text-amber-400 font-black text-sm">$1.50 USD</span>
+                        <span class="text-[11px] text-slate-400 font-medium price-ves" data-usd="1.50">-- Bs</span>
+                    </div>
+                </div>
+
+                <!-- Duos -->
+                <div onclick="selectTournament(this, 'Duos', 3.00, '2 Jugadores')" class="tournament-card cursor-pointer bg-slate-900/80 hover:bg-slate-800 border-2 border-slate-700/80 rounded-xl p-4 transition-all duration-200 flex flex-col items-center text-center relative group">
+                    <i class="fa-solid fa-user-group text-3xl text-amber-400 my-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-extrabold text-white text-base">Torneo Duos</span>
+                    <span class="text-xs text-slate-400 mb-2">Parejas competitivas</span>
+                    <div class="mt-auto pt-2 border-t border-slate-800 w-full flex flex-col items-center">
+                        <span class="text-amber-400 font-black text-sm">$3.00 USD</span>
+                        <span class="text-[11px] text-slate-400 font-medium price-ves" data-usd="3.00">-- Bs</span>
+                    </div>
+                </div>
+
+                <!-- Escuadras -->
+                <div onclick="selectTournament(this, 'Escuadras (Squad)', 4.00, '4 Jugadores + 1 Suplente')" class="tournament-card cursor-pointer bg-slate-900/80 hover:bg-slate-800 border-2 border-slate-700/80 rounded-xl p-4 transition-all duration-200 flex flex-col items-center text-center relative group">
+                    <span class="absolute -top-2 bg-amber-400 text-black font-extrabold text-[9px] px-2.5 py-0.5 rounded-full uppercase">Estrella</span>
+                    <i class="fa-solid fa-users text-3xl text-amber-400 my-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-extrabold text-white text-base">Torneo Escuadras</span>
+                    <span class="text-xs text-slate-400 mb-2">Clan vs Clan / 4 vs 4</span>
+                    <div class="mt-auto pt-2 border-t border-slate-800 w-full flex flex-col items-center">
+                        <span class="text-amber-400 font-black text-sm">$4.00 USD</span>
+                        <span class="text-[11px] text-slate-400 font-medium price-ves" data-usd="4.00">-- Bs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: REGISTRO DE JUGADOR / CLAN -->
+        <section id="step2" class="bg-lvff-card rounded-2xl p-5 border border-slate-800 shadow-md">
+            <h3 class="font-bold text-base flex items-center gap-2 text-white mb-3">
+                <span class="w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black flex items-center justify-center">2</span>
+                Datos del Jugador o Escuadra
+            </h3>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nombre / Nickname o Clan:</label>
+                    <input type="text" id="playerName" placeholder="Ej: JERC Clan / KevPro" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-sm font-medium transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">ID(s) de Jugador en Free Fire:</label>
+                    <input type="text" id="playerId" placeholder="Ej: 123456789 (Si es escuadra escribe los IDs separados)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-sm font-medium transition">
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 3: METODO DE PAGO -->
+        <section id="step3" class="bg-lvff-card rounded-2xl p-5 border border-slate-800 shadow-md">
+            <h3 class="font-bold text-base flex items-center gap-2 text-white mb-4">
+                <span class="w-7 h-7 rounded-full bg-amber-400 text-black text-xs font-black flex items-center justify-center">3</span>
+                Método de Pago de Inscripción
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Pago Móvil -->
+                <label onclick="selectPayment(this, 'Pago Móvil')" class="payment-card cursor-pointer bg-slate-900 border-2 border-slate-700 hover:border-amber-400/50 p-4 rounded-xl flex items-center gap-3 transition">
+                    <input type="radio" name="payment" class="hidden">
+                    <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white text-base font-bold shadow">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-white">Pago Móvil</p>
+                        <p class="text-xs text-slate-400">Banco de Venezuela (Bs)</p>
+                    </div>
+                </label>
+
+                <!-- Binance Pay -->
+                <label onclick="selectPayment(this, 'Binance Pay')" class="payment-card cursor-pointer bg-slate-900 border-2 border-slate-700 hover:border-amber-400/50 p-4 rounded-xl flex items-center gap-3 transition">
+                    <input type="radio" name="payment" class="hidden">
+                    <div class="w-10 h-10 rounded-lg bg-yellow-500 flex items-center justify-center text-black text-base font-bold shadow">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-white">Binance Pay</p>
+                        <p class="text-xs text-slate-400">Pay ID / UID (USDT)</p>
+                    </div>
+                </label>
+            </div>
+
+            <!-- PAYMENT DETAILS BOX -->
+            <div id="paymentDetails" class="mt-4 p-4 rounded-xl bg-slate-900 border border-amber-400/30 hidden">
+                <h4 id="paymentDetailsTitle" class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Datos oficiales para la inscripción:</h4>
+                <div id="paymentDetailsContent" class="text-xs text-slate-300 space-y-1 font-mono">
+                    <!-- Dynamic details -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 4: RESUMEN Y ENVIO POR WHATSAPP -->
+        <section id="step4" class="bg-slate-900 rounded-2xl p-5 border border-slate-800 shadow-xl">
+            <h3 class="font-bold text-base text-white mb-3">Resumen de Inscripción</h3>
+            
+            <div class="space-y-2 text-sm border-b border-slate-800 pb-3 mb-4">
+                <div class="flex justify-between text-slate-400">
+                    <span>Torneo / Modalidad:</span>
+                    <span id="summaryTournament" class="text-white font-bold">No seleccionado</span>
+                </div>
+                <div class="flex justify-between text-slate-400">
+                    <span>Nombre / Clan:</span>
+                    <span id="summaryName" class="text-white font-bold">No ingresado</span>
+                </div>
+                <div class="flex justify-between text-slate-400">
+                    <span>Método de Pago:</span>
+                    <span id="summaryPayment" class="text-white font-bold">No seleccionado</span>
+                </div>
+                <div class="flex justify-between text-slate-400 pt-2 border-t border-slate-800/50 text-base">
+                    <span class="font-bold text-white">Inscripción USD:</span>
+                    <span id="summaryUsd" class="text-amber-400 font-black">$0.00 USD</span>
+                </div>
+                <div class="flex justify-between text-slate-400 text-sm">
+                    <span class="font-bold text-slate-300">Total en Bs:</span>
+                    <span id="summaryVes" class="text-emerald-400 font-black">0,00 Bs</span>
+                </div>
+            </div>
+
+            <!-- WhatsApp Order Button -->
+            <button onclick="sendRegistration()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-4 rounded-xl shadow-lg neon-glow transition flex items-center justify-center gap-2 text-base">
+                <i class="fa-brands fa-whatsapp text-xl"></i> ENVIAR COMPROBANTE Y REGISTRO AL WHATSAPP
+            </button>
+            <p class="text-[11px] text-slate-400 text-center mt-2 flex items-center justify-center gap-1">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i> Al hacer clic se abrirá WhatsApp para enviar tu registro y adjuntar tu comprobante de pago.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-lvff-card border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-auto">
+        <p>© 2026 Liga Venezolana de Free Fire (LVFF). Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const MY_PHONE_NUMBER = "584246041002"; 
+        const EXCHANGE_RATE_VES = 900.00; // Tasa actualizada a 900 Bs
+
+        const PAGO_MOVIL_DATA = `
+            <p><span class="text-slate-500">Banco:</span> Banco de Venezuela (0102)</p>
+            <p><span class="text-slate-500">Cédula:</span> V-30.878.012</p>
+            <p><span class="text-slate-500">Teléfono:</span> 0424-6041002</p>
+        `;
+
+        const BINANCE_DATA = `
+            <p><span class="text-slate-500">Binance Pay ID / UID:</span> 920153175</p>
+        `;
+
+        let currentTournament = null;
+        let currentPayment = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('rateBadge').innerText = `${EXCHANGE_RATE_VES.toFixed(2)} Bs / $`;
+            
+            document.querySelectorAll('.price-ves').forEach(el => {
+                const usd = parseFloat(el.getAttribute('data-usd'));
+                const ves = usd * EXCHANGE_RATE_VES;
+                el.innerText = `${ves.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2})} Bs`;
+            });
+        });
+
+        function selectTournament(element, title, priceUsd, desc) {
+            document.querySelectorAll('.tournament-card').forEach(card => {
+                card.classList.remove('gold-border-glow', 'bg-slate-800');
+                card.classList.add('border-slate-700/80', 'bg-slate-900/80');
+            });
+
+            element.classList.remove('border-slate-700/80', 'bg-slate-900/80');
+            element.classList.add('gold-border-glow', 'bg-slate-800');
+
+            currentTournament = { title, priceUsd, desc };
+            updateSummary();
+
+            setTimeout(() => {
+                document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        function selectPayment(element, method) {
+            document.querySelectorAll('.payment-card').forEach(card => {
+                card.classList.remove('gold-border-glow', 'bg-slate-800');
+                card.classList.add('border-slate-700', 'bg-slate-900');
+            });
+
+            element.classList.remove('border-slate-700', 'bg-slate-900');
+            element.classList.add('gold-border-glow', 'bg-slate-800');
+
+            currentPayment = method;
+            document.getElementById('summaryPayment').innerText = method;
+
+            const detailsBox = document.getElementById('paymentDetails');
+            const detailsContent = document.getElementById('paymentDetailsContent');
+            detailsBox.classList.remove('hidden');
+
+            if (method === 'Pago Móvil') {
+                detailsContent.innerHTML = PAGO_MOVIL_DATA;
+            } else if (method === 'Binance Pay') {
+                detailsContent.innerHTML = BINANCE_DATA;
+            }
+
+            setTimeout(() => {
+                document.getElementById('step4').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        function updateSummary() {
+            const summaryTournament = document.getElementById('summaryTournament');
+            const summaryUsd = document.getElementById('summaryUsd');
+            const summaryVes = document.getElementById('summaryVes');
+
+            if (!currentTournament) {
+                summaryTournament.innerText = 'No seleccionado';
+                summaryUsd.innerText = '$0.00 USD';
+                summaryVes.innerText = '0,00 Bs';
+                return;
+            }
+
+            summaryTournament.innerText = currentTournament.title;
+            summaryUsd.innerText = `$${currentTournament.priceUsd.toFixed(2)} USD`;
+            const ves = currentTournament.priceUsd * EXCHANGE_RATE_VES;
+            summaryVes.innerText = `${ves.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2})} Bs`;
+        }
+
+        function sendRegistration() {
+            const name = document.getElementById('playerName').value.trim();
+            const id = document.getElementById('playerId').value.trim();
+
+            if (!currentTournament) {
+                alert('Por favor, selecciona la modalidad del torneo primero.');
+                document.getElementById('step1').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (!name || !id) {
+                alert('Por favor, ingresa el nombre/clan y el ID del jugador.');
+                document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (!currentPayment) {
+                alert('Por favor, selecciona un método de pago.');
+                document.getElementById('step3').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            document.getElementById('summaryName').innerText = name;
+
+            const totalUsd = `$${currentTournament.priceUsd.toFixed(2)} USD`;
+            const totalVes = `${(currentTournament.priceUsd * EXCHANGE_RATE_VES).toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2})} Bs`;
+
+            const message = `🏆 *REGISTRO DE TORNEO - LVFF*\n\n` +
+                `📌 *Modalidad:* ${currentTournament.title}\n` +
+                `👤 *Nombre / Clan:* ${name}\n` +
+                `🎮 *ID(s):* ${id}\n` +
+                `💳 *Método de Pago:* ${currentPayment}\n` +
+                `💰 *Monto Inscripción:* ${totalUsd} (${totalVes})\n\n` +
+                `_Hola, ya realicé el pago de mi inscripción. Te adjunto la captura del comprobante para que me des los datos de la sala e indicaciones._`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${MY_PHONE_NUMBER}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
